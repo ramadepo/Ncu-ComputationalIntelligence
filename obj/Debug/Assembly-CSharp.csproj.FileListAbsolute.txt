@@ -65,3 +65,5 @@ C:\Users\拉馬\Documents\ComputationalIntelligence\Temp\bin\Debug\UnityEditor.i
 C:\Users\拉馬\Documents\ComputationalIntelligence\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\拉馬\Documents\ComputationalIntelligence\obj\Debug\Assembly-CSharp.dll
 C:\Users\拉馬\Documents\ComputationalIntelligence\obj\Debug\Assembly-CSharp.pdb
+C:\Users\拉馬\Documents\ComputationalIntelligence\Temp\bin\Debug\TextMeshPro-2017.3-1.0.56-Editor.dll
+C:\Users\拉馬\Documents\ComputationalIntelligence\Temp\bin\Debug\TextMeshPro-2017.3-1.0.56-Runtime.dll
