@@ -22,7 +22,7 @@ public class DistanceLog : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {	//show each distance log
 		if (forward) {
 			distanceText.text = "forward: " + forwardDistance.distance.ToString("###.##");
 		}

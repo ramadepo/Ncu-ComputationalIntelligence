@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SimpleControl : MonoBehaviour {
 
-	public bool canControl;
+	public static bool canControl;
 	public Camera cam;
 
 	private Vector3 gasp;
@@ -14,7 +14,6 @@ public class SimpleControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		canControl = true;
 		gasp = cam.transform.position - transform.position;
 	}
 	
@@ -34,9 +33,13 @@ public class SimpleControl : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other){
-		Debug.Log (123);
+	void OnTriggerEnter(Collider other){	//end condition
 		if (other.CompareTag("Wall")) {
+			Debug.Log ("Failed !");
+			SceneManager.LoadScene ("HW1");
+		}
+		else if (other.CompareTag("EndPoint")) {
+			Debug.Log ("Success !");
 			SceneManager.LoadScene ("HW1");
 		}
 	}
