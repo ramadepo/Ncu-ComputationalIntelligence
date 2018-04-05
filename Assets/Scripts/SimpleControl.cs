@@ -28,9 +28,9 @@ public class SimpleControl : MonoBehaviour {
 			}
 			if (Input.GetKey(KeyCode.UpArrow)) {
 				transform.Translate (new Vector3 (0f,0.3f,0f));
-				cam.transform.position = transform.position + gasp;	//camera follow
 			}
 		}
+		cam.transform.position = transform.position + gasp;	//camera follow
 	}
 
 	void OnTriggerEnter(Collider other){	//end condition

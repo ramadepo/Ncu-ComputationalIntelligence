@@ -138,8 +138,11 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Switch
 50a0fa002cfc67638c87a901e46b763e Assembly-CSharp.dll:TMPro.Examples.TMP_TextSelector_B
+4525d21a95b98ae7b8a86d4f192639ba Assembly-CSharp.dll:.ComplexControl
 020550babdb991365f61c5bffe1f4f52 Assembly-CSharp.dll:TMPro.Examples.Benchmark03
+38da25a288396c38193e855fbe4626f8 Assembly-CSharp.dll:.DistanceLog
 b9332c0eee630779376843b5343eb250 Assembly-CSharp.dll:TMPro.Examples.TMP_TextInfoDebugTool
 f4bd1aee67eeef7953cce6c44588b3d7 TextMeshPro-2017.3-1.0.56-Runtime.dll:TMPro.TextContainer
 8e879b98cad4aa17a0beef746daecd35 TextMeshPro-2017.3-1.0.56-Runtime.dll:TMPro.TextMeshPro
@@ -198,6 +201,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+2b5bd81c259c691324a17af9a3e97e85 Assembly-CSharp.dll:.DegreeLog
 25a8032d233df72c368030798802d97d Assembly-CSharp.dll:.LineSensor
 62229a3e4d53ca59bec192e89627ed52 Assembly-CSharp.dll:TMPro.Examples.CameraController
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -222,9 +226,7 @@ afc52d27c3ec0bd47909e81bd45fbffa Assembly-CSharp.dll:TMPro.TMP_TextEventHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.Examples.VertexColorCycler
 020550babdb991365f61c5bffe1f4f52 Assembly-CSharp.dll:TMPro.Examples.TextMeshSpawner
 af7666733efcc974926d7d470e1732a6 Assembly-CSharp.dll:TMPro.Examples.SkewTextExample
-90e433a824935df71277640b5bb983ba Assembly-CSharp.dll:.SimpleControl
+2124af75d6b3afb90d3c8471b98e9f78 Assembly-CSharp.dll:.SimpleControl
 2b5bd81c259c691324a17af9a3e97e85 Assembly-CSharp.dll:.CoordinateLog
 34e025057ef78b1bf238460cdf6583a3 Assembly-CSharp.dll:TMPro.Examples.ObjectSpin
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.Examples.SimpleScript
-2b5bd81c259c691324a17af9a3e97e85 Assembly-CSharp.dll:.DegreeLog
-38da25a288396c38193e855fbe4626f8 Assembly-CSharp.dll:.DistanceLog

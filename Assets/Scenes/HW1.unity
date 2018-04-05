@@ -2351,12 +2351,18 @@ MonoBehaviour:
   forward: {fileID: 751359009}
   left: {fileID: 592109716}
   right: {fileID: 1464698539}
-  forwardSmall: 0
-  forwardMedium: 0
-  forwradLarge: 0
-  RLSmall: 0
-  RLMedium: 0
-  RLLarge: 0
+  forwardSmallValue: 0.1
+  forwardMediumValue: 1
+  forwardLargeValue: 0.1
+  forwardSmall: 4
+  forwardMedium: 7
+  forwardLarge: 10
+  RLSmallValue: 0.5
+  RLMediumValue: 0.8
+  RLLargeValue: 1
+  RLSmall: 8
+  RLMedium: 12
+  RLLarge: 16
 --- !u!1 &1640598595
 GameObject:
   m_ObjectHideFlags: 0
