@@ -2351,10 +2351,10 @@ MonoBehaviour:
   forward: {fileID: 751359009}
   left: {fileID: 592109716}
   right: {fileID: 1464698539}
-  forwardSmallValue: 0.1
+  forwardSmallValue: 0.7
   forwardMediumValue: 1
   forwardLargeValue: 0.1
-  forwardSmall: 4
+  forwardSmall: 3
   forwardMedium: 7
   forwardLarge: 10
   RLSmallValue: 0.5

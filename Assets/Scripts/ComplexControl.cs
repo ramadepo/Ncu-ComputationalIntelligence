@@ -57,11 +57,11 @@ public class ComplexControl : MonoBehaviour {
 				}
 				else if (left.distance > right.distance) {	//turn left
 					theta = (-1f * GGGG());
-					if (theta > 25) {
+					if (theta < -25) {
 						once = true;
 					}
 					else if (once) {
-						theta = 40;
+						theta = -40;
 						once = false;
 					}
 					Debug.Log (theta);
