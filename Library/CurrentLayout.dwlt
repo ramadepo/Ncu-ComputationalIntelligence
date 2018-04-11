@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 1025
     height: 731
-  m_MinSize: {x: 202, y: 342}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 202, y: 321}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
   controlID: 12
 --- !u!114 &8
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 471}
   m_MaxSize: {x: 10004, y: 14021}
   vertical: 1
-  controlID: 52
+  controlID: 126
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -510,18 +510,18 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 92
-    width: 1025
-    height: 602
+    width: 1023
+    height: 589
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 52134.56643095864
+  lastFramingTime: 1508.021448875725
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 102.399994, y: 19.199997, z: 0}
+    m_Target: {x: 11.361328, y: 26.344727, z: 3.9375}
     speed: 2
-    m_Value: {x: 102.399994, y: 19.199997, z: 0}
+    m_Value: {x: 11.361328, y: 26.344727, z: 3.9375}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -549,9 +549,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.019460564, y: -0.062946126, z: 0.0012357248, w: -0.9978358}
   m_Size:
-    m_Target: 1233.8228
+    m_Target: 109.05327
     speed: 2
-    m_Value: 1233.8228
+    m_Value: 109.05327
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -619,23 +619,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b82b0000
-    m_LastClickedID: 11192
-    m_ExpandedIDs: 9efbffff00000000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 74d2fbff4cd3fbff10d5fbff00f7fdff9efbffff00000000ac2b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: BackGround
+      m_OriginalName: BackGround
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 11162
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -683,18 +683,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Materials
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\\u62C9\u99AC\\Documents\\ComputationalIntelligence"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 74280000
-    m_LastClickedID: 10356
+    m_SelectedIDs: c0290000
+    m_LastClickedID: 10688
     m_ExpandedIDs: 000000006628000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0

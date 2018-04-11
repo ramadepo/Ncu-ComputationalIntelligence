@@ -33,6 +33,7 @@ public class ComplexControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thistime = Time.time;
+		Time.timeScale = 10f;
 	}
 	
 	// Update is called once per frame
