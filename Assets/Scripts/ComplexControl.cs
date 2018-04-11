@@ -29,53 +29,35 @@ public class ComplexControl : MonoBehaviour {
 	private float tempx;
 	private float tempy;
 	private float tempro;
-	private bool once;
+
 	// Use this for initialization
 	void Start () {
 		thistime = Time.time;
-		once = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time-thistime >=1) {
-			thistime = Time.time;
 			if (canControl) {
 				if (Mathf.Abs(right.distance-left.distance) <= 0.01) {	//go straight
 					theta = 0f;
 				}
 				else if (right.distance > left.distance) {	//turn right
 					theta = GGGG();
-					if (theta > 25) {
-						once = true;
-					}
-					else if (once) {
-						theta = 40;
-						once = false;
-					}
 					Debug.Log (theta);
 				}
 				else if (left.distance > right.distance) {	//turn left
 					theta = (-1f * GGGG());
-					if (theta < -25) {
-						once = true;
-					}
-					else if (once) {
-						theta = -40;
-						once = false;
-					}
 					Debug.Log (theta);
 				}
 					//x(t+1) = x(t) + cos[Φ(t)+θ(t)] + sin[θ(t)]sin[Φ(t)]
-					tempx = player.position.x + Mathf.Cos ((player.rotation.eulerAngles.z + 90f - theta)*Mathf.Deg2Rad) + (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Sin ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad));
+				tempx = player.position.x + (Mathf.Cos ((player.rotation.eulerAngles.z + 90f - theta)*Mathf.Deg2Rad) + (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Sin ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad)))*Time.deltaTime;
 					//y(t+1) = y(t) + sin[Φ(t)+θ(t)] - sin[θ(t)]cos[Φ(t)]
-					tempy = player.position.y + Mathf.Sin ((player.rotation.eulerAngles.z + 90f + theta)*Mathf.Deg2Rad) - (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Cos ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad));
+				tempy = player.position.y + (Mathf.Sin ((player.rotation.eulerAngles.z + 90f + theta)*Mathf.Deg2Rad) - (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Cos ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad)))*Time.deltaTime;
 					//Φ(t+1) = Φ(t) - arcsin[ 2*sin[θ(t)]/b ]
-					tempro = player.rotation.eulerAngles.z + 90f - (Mathf.Asin ((Mathf.Sin (theta * Mathf.Deg2Rad) * 2f) / 6f))*Mathf.Rad2Deg;
+				tempro = player.rotation.eulerAngles.z + 90f - ((Mathf.Asin ((Mathf.Sin (theta * Mathf.Deg2Rad) * 2f) / 6f))*Mathf.Rad2Deg)*Time.deltaTime;
 					player.position = new Vector3 (tempx, tempy, 10f);
 					player.rotation = Quaternion.Euler (player.rotation.eulerAngles.x, player.rotation.eulerAngles.y, tempro - 90f);
 			}
-		}
 	}
 
 	private float GGGG(){
@@ -90,7 +72,7 @@ public class ComplexControl : MonoBehaviour {
 			afa = ((forwardSmallValue * GGSS (forward.distance, forwardSmall)) + (forwardMediumValue * GGSS (forward.distance, forwardMedium)) + (forwardLargeValue * GGSS (forward.distance, forwardLarge))) / (GGSS (forward.distance, forwardSmall) + GGSS (forward.distance, forwardMedium) + GGSS (forward.distance, forwardLarge));
 		}
 		float minus;
-		minus = Mathf.Abs (right.distance - left.distance);
+		minus = Mathf.Min (right.distance, left.distance);
 		if (minus <= RLSmall) {
 			beta = RLSmallValue;
 		}
@@ -113,7 +95,7 @@ public class ComplexControl : MonoBehaviour {
 
 	private float GGSS(float x, float x0){
 		float result;
-		result = Mathf.Exp (((-1f) * (Mathf.Pow (x - x0, 2))) / (2f * (Mathf.Pow (1f, 2))));
+		result = Mathf.Exp (((-1f) * (Mathf.Pow (x - x0, 2))) / (2f * (Mathf.Pow (3f, 2))));
 		return result;
 	}
 }
