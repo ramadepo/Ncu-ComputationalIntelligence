@@ -28,7 +28,7 @@ public class FileManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		path=Application.dataPath + "/case01.txt";
+		path=Application.dataPath + "/case05.txt";
 		reader = new StreamReader (path);
 
 		s = reader.ReadLine ();	//get the player coordinate

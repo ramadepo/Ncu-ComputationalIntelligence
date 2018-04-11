@@ -39,16 +39,15 @@ public class ComplexControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 			if (canControl) {
-				if (Mathf.Abs(right.distance-left.distance) <= 0.01) {	//go straight
-					theta = 0f;
-				}
-				else if (right.distance > left.distance) {	//turn right
+				if (right.distance > left.distance) {	//turn right
 					theta = GGGG();
 					Debug.Log (theta);
 				}
 				else if (left.distance > right.distance) {	//turn left
 					theta = (-1f * GGGG());
 					Debug.Log (theta);
+				} else {
+				
 				}
 					//x(t+1) = x(t) + cos[Φ(t)+θ(t)] + sin[θ(t)]sin[Φ(t)]
 				tempx = player.position.x + (Mathf.Cos ((player.rotation.eulerAngles.z + 90f - theta)*Mathf.Deg2Rad) + (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Sin ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad)))*Time.deltaTime;
