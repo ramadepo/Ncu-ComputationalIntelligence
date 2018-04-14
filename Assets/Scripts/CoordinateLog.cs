@@ -27,7 +27,7 @@ public class CoordinateLog : MonoBehaviour {
 			coordinate = "( " + player.transform.position.x.ToString ("##.##") + " , " + player.transform.position.y.ToString ("##.##") + " )";
 			logContents.Add (coordinate);
 			count++;
-			if (logContents.Count>10) {	//10 logs max
+			if (logContents.Count>5) {	//5 logs max
 				logContents.RemoveAt (0);
 				count--;
 			}

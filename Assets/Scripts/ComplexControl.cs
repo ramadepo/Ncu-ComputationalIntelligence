@@ -24,7 +24,7 @@ public class ComplexControl : MonoBehaviour {
 	public float RLMedium = 3f;
 	public float RLLarge = 5f;
 
-	private float theta;
+	public float theta;
 	private float thistime;
 	private float tempx;
 	private float tempy;

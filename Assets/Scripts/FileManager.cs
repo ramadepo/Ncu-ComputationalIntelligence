@@ -16,8 +16,6 @@ public class FileManager : MonoBehaviour {
 	private float scale;
 	private float xNext;
 	private float yNext;
-	private float xInit;
-	private float yInit;
 	private float gRx;
 	private float gLx;
 	private float gRy;
@@ -28,7 +26,7 @@ public class FileManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		path=Application.dataPath + "/case05.txt";
+		path=Application.dataPath + "/case06.txt";
 		reader = new StreamReader (path);
 
 		s = reader.ReadLine ();	//get the player coordinate
@@ -48,35 +46,21 @@ public class FileManager : MonoBehaviour {
 		CutString(s);
 		x = xNext;
 		y = yNext;
-		xInit = xNext;
-		yInit = yNext;
 		while (!reader.EndOfStream) {
 			s = reader.ReadLine ();
 			CutString (s);
-			if ((xNext == xInit)&&(yNext == yInit)) {	//same with first plot means end
-				scale = Mathf.Sqrt ((Mathf.Pow ((xNext - x), 2) + Mathf.Pow ((yNext - y), 2)));	//get the length
-				if (xNext >= x) {	//position = (x+xNext)/2,(y+yNext)/2,10     rotation = 0,0,sin-1((right y - left y)/length)
-					Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((yNext - y) / scale) * Mathf.Rad2Deg),wallParent);
-				}
-				else {
-					Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((y - yNext) / scale) * Mathf.Rad2Deg),wallParent);
-				}
-				wallParent.GetChild (wallParent.childCount - 1).localScale = new Vector3 (scale, 0.5f, 5f);
 
-				break;
-			} else {
-				scale = Mathf.Sqrt ((Mathf.Pow ((xNext - x), 2) + Mathf.Pow ((yNext - y), 2)));	//get the length
-				if (xNext >= x) {	//position = (x+xNext)/2,(y+yNext)/2,10     rotation = 0,0,sin-1((right y - left y)/length)
-					Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((yNext - y) / scale) * Mathf.Rad2Deg),wallParent);
-				}
-				else {
-					Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((y - yNext) / scale) * Mathf.Rad2Deg),wallParent);
-				}
-				wallParent.GetChild (wallParent.childCount - 1).localScale = new Vector3 (scale, 0.5f, 5f);
-
-				x = xNext;
-				y = yNext;
+			scale = Mathf.Sqrt ((Mathf.Pow ((xNext - x), 2) + Mathf.Pow ((yNext - y), 2)));	//get the length
+			if (xNext >= x) {	//position = (x+xNext)/2,(y+yNext)/2,10     rotation = 0,0,sin-1((right y - left y)/length)
+				Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((yNext - y) / scale) * Mathf.Rad2Deg),wallParent);
 			}
+			else {
+				Instantiate (wall, new Vector3 ((x + xNext) / 2, (y + yNext) / 2, 10), Quaternion.Euler (0f, 0f, Mathf.Asin ((y - yNext) / scale) * Mathf.Rad2Deg),wallParent);
+			}
+			wallParent.GetChild (wallParent.childCount - 1).localScale = new Vector3 (scale, 0.5f, 5f);
+		
+			x = xNext;
+			y = yNext;
 		}
 
 

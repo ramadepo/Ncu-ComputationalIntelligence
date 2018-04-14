@@ -18,11 +18,11 @@ public class DegreeLog : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {	//show degree log
 		if (player.transform.rotation.eulerAngles.z>=0 && player.transform.rotation.eulerAngles.z<=180) {	//euler:0~180 unity:0~180  left
-			d = player.transform.rotation.eulerAngles.z * -1;
+			d = player.transform.rotation.eulerAngles.z +90;
 		}
 		else if (player.transform.rotation.eulerAngles.z>180 && player.transform.rotation.eulerAngles.z<360) {	//euler:180~360 unity:-0~-180  right
-			d = player.transform.rotation.eulerAngles.z * -1 + 360;
+			d = player.transform.rotation.eulerAngles.z - 270f;
 		}
-		degree.text = d.ToString ("###") + " °";
+		degree.text = "Degree: " + d.ToString ("###") + " °";
 	}
 }

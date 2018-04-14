@@ -2,8 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FileManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\ComplexControl.cs" Line="50" Column="5" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="31" Column="39" />
+      <File FileName="Assets\Scripts\ComplexControl.cs" Line="27" Column="8" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="29" Column="39" />
+      <File FileName="Assets\Scripts\DegreeLog.cs" Line="26" Column="19" />
+      <File FileName="Assets\Scripts\DistanceLog.cs" Line="33" Column="26" />
+      <File FileName="Assets\Scripts\ThetaLog.cs" Line="19" Column="18" />
+      <File FileName="Assets\Scripts\CoordinateLog.cs" Line="30" Column="34" />
+      <File FileName="Assets\Scripts\Switch.cs" Line="59" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

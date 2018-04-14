@@ -24,13 +24,13 @@ public class DistanceLog : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {	//show each distance log
 		if (forward) {
-			distanceText.text = "forward: " + forwardDistance.distance.ToString("###.##");
+			distanceText.text = "Forward: " + forwardDistance.distance.ToString("###.##");
 		}
 		else if (left) {
-			distanceText.text = "left: " + leftDistance.distance.ToString("###.##");
+			distanceText.text = "Left: " + leftDistance.distance.ToString("###.##");
 		}
 		else if (right) {
-			distanceText.text = "right: " + rightDistance.distance.ToString("###.##");
+			distanceText.text = "Right: " + rightDistance.distance.ToString("###.##");
 		}
 	}
 }
