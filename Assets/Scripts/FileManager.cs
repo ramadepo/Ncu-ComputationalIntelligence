@@ -14,6 +14,7 @@ public class FileManager : MonoBehaviour {
 	public GameObject greenArea;
 	public GameObject wall;
 	public Transform wallParent;
+	public static bool mapComplete = false;
 
 
 	private float x;
@@ -79,6 +80,7 @@ public class FileManager : MonoBehaviour {
 
 
 		reader.Close ();
+		mapComplete = true;
 
 		thisTime = Time.time;
 		path2 = Application.dataPath + "/result.txt";

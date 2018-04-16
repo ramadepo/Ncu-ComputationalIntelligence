@@ -35,8 +35,8 @@ public class SimpleControl : MonoBehaviour {
 			}
 		}
 		cam.transform.position = transform.position + gasp;	//camera follow
-		if (ComplexControl.canControl || SimpleControl.canControl) {
-			if (Time.time-thisTime >= 0.5f) {
+		if (ComplexControl.canControl || SimpleControl.canControl ) {
+			if (Time.time-thisTime >= 0.5f && FileManager.mapComplete) {
 				thisTime = Time.time;
 				Instantiate (pathBall, transform.position, transform.rotation);
 			}
