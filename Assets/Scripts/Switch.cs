@@ -6,6 +6,7 @@ using TMPro;
 public class Switch : MonoBehaviour {
 
 	public ComplexControl com;
+	public GameObject fileManager;
 
 	public TMP_InputField forwardDistanceSmall;
 	public TMP_InputField forwardDistanceMedium;
@@ -21,11 +22,21 @@ public class Switch : MonoBehaviour {
 	public TMP_InputField LRLargeWeight;
 
 	private TextMeshProUGUI switchtext;
+	private bool haveStarted;
 
 	// Use this for initialization
 	void Start () {
 		switchtext = GetComponent<TextMeshProUGUI> ();
+		switchtext.text = "Start";
+		haveStarted = false;
+
+	}
+
+	private void ClickStart(){
+		haveStarted = true;
+
 		switchtext.text = "Manual";
+
 		ComplexControl.canControl = false;
 		SimpleControl.canControl = true;
 
@@ -41,35 +52,38 @@ public class Switch : MonoBehaviour {
 		LRSmallWeight.text = com.RLSmall.ToString ();
 		LRMediumWeight.text = com.RLMedium.ToString ();
 		LRLargeWeight.text = com.RLLarge.ToString ();
-
 	}
 
-
 	public void ControlSwitch(){
-		if (SimpleControl.canControl) {	//work by ComplexControl (CPU)
-			switchtext.text = "Auto";
+		if (haveStarted) {
+			if (SimpleControl.canControl) {	//work by ComplexControl (CPU)
+				switchtext.text = "Auto";
 
-			com.forwardSmallValue = float.Parse (forwardDistanceSmall.text);
-			com.forwardMediumValue = float.Parse (forwardDistanceMedium.text);
-			com.forwardLargeValue = float.Parse (forwardDistanceLarge.text);
-			com.forwardSmall = float.Parse (forwardSmallWeight.text);
-			com.forwardMedium = float.Parse (forwardMediumWeight.text);
-			com.forwardLarge = float.Parse (forwardLargeWeight.text);
-			com.RLSmallValue = float.Parse (LRDistanceSmall.text);
-			com.RLMediumValue = float.Parse (LRDistanceMedium.text);
-			com.RLLargeValue = float.Parse (LRDistanceLarge.text);
-			com.RLSmall = float.Parse (LRSmallWeight.text);
-			com.RLMedium = float.Parse (LRMediumWeight.text);
-			com.RLLarge = float.Parse (LRLargeWeight.text);
+				com.forwardSmallValue = float.Parse (forwardDistanceSmall.text);
+				com.forwardMediumValue = float.Parse (forwardDistanceMedium.text);
+				com.forwardLargeValue = float.Parse (forwardDistanceLarge.text);
+				com.forwardSmall = float.Parse (forwardSmallWeight.text);
+				com.forwardMedium = float.Parse (forwardMediumWeight.text);
+				com.forwardLarge = float.Parse (forwardLargeWeight.text);
+				com.RLSmallValue = float.Parse (LRDistanceSmall.text);
+				com.RLMediumValue = float.Parse (LRDistanceMedium.text);
+				com.RLLargeValue = float.Parse (LRDistanceLarge.text);
+				com.RLSmall = float.Parse (LRSmallWeight.text);
+				com.RLMedium = float.Parse (LRMediumWeight.text);
+				com.RLLarge = float.Parse (LRLargeWeight.text);
 
 
 
-			SimpleControl.canControl = false;
-			ComplexControl.canControl = true;
+				SimpleControl.canControl = false;
+				ComplexControl.canControl = true;
+			} else {
+				switchtext.text = "Manual";	//work by SimpleControl (people)
+				SimpleControl.canControl = true;
+				ComplexControl.canControl = false;
+			}
 		} else {
-			switchtext.text = "Manual";	//work by SimpleControl (people)
-			SimpleControl.canControl = true;
-			ComplexControl.canControl = false;
+			fileManager.SetActive (true);
+			ClickStart ();
 		}
 	}
 

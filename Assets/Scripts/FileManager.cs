@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class FileManager : MonoBehaviour {
 
 	public GameObject player;
+	public LineSensor forward;
+	public LineSensor left;
+	public LineSensor right;
+	public ComplexControl com;
 	public GameObject greenArea;
 	public GameObject wall;
 	public Transform wallParent;
+
 
 	private float x;
 	private float y;
@@ -24,9 +30,17 @@ public class FileManager : MonoBehaviour {
 	private string path;
 	private StreamReader reader;
 
+	private float thisTime;
+	public static StreamWriter writer;
+	private static string path2;
+
 	// Use this for initialization
 	void Start () {
-		path=Application.dataPath + "/case06.txt";
+		string filename;
+		filename = GameObject.Find ("FileName").GetComponent<TMP_InputField> ().text;
+		GameObject.Find ("FileName").SetActive (false);
+
+		path = Application.dataPath + "/" + filename;
 		reader = new StreamReader (path);
 
 		s = reader.ReadLine ();	//get the player coordinate
@@ -65,11 +79,30 @@ public class FileManager : MonoBehaviour {
 
 
 		reader.Close ();
+
+		thisTime = Time.time;
+		path2 = Application.dataPath + "/result.txt";
+		writer = new StreamWriter (path2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (SimpleControl.canControl || ComplexControl.canControl) {
+			if (Time.time-thisTime >= 1f) {
+				thisTime = Time.time;
+				writer.WriteLine (player.transform.position.x.ToString () + " " + player.transform.position.y.ToString () + " " + forward.distance.ToString () + " " + right.distance.ToString () + " " + left.distance.ToString () + " " + com.theta.ToString ());
+			}
+		}
+	}
+
+	public static void FailedEnd(){
+		writer = new StreamWriter (path2);
+		writer.WriteLine ("Failed.");
+		writer.Close ();
+	}
+
+	public static void EndProgram(){
+		writer.Close ();
 	}
 
 	private void CutStringPlayer(string s){

@@ -7,13 +7,17 @@ public class SimpleControl : MonoBehaviour {
 
 	public static bool canControl;
 	public Camera cam;
+	public GameObject pathBall;
 
 	private Vector3 gasp;
 	private float horizontal;
 	private float vertical;
+	private float thisTime;
 
 	// Use this for initialization
 	void Start () {
+		thisTime = Time.time;
+		canControl = false;
 		gasp = cam.transform.position - transform.position;
 	}
 	
@@ -31,15 +35,19 @@ public class SimpleControl : MonoBehaviour {
 			}
 		}
 		cam.transform.position = transform.position + gasp;	//camera follow
+		if (ComplexControl.canControl || SimpleControl.canControl) {
+			if (Time.time-thisTime >= 0.5f) {
+				thisTime = Time.time;
+				Instantiate (pathBall, transform.position, transform.rotation);
+			}
+		}
 	}
 
 	void OnTriggerEnter(Collider other){	//end condition
 		if (other.CompareTag("Wall")) {
+			FileManager.EndProgram ();
+			FileManager.FailedEnd ();
 			Debug.Log ("Failed !");
-			SceneManager.LoadScene ("HW1");
-		}
-		else if (other.CompareTag("EndPoint")) {
-			Debug.Log ("Success !");
 			SceneManager.LoadScene ("HW1");
 		}
 	}
