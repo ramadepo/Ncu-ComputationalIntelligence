@@ -83,7 +83,7 @@ public class FileManager : MonoBehaviour {
 		mapComplete = true;
 
 		thisTime = Time.time;
-		path2 = Application.dataPath + "/result.txt";
+		path2 = Application.dataPath + "/train6D.txt";
 		writer = new StreamWriter (path2);
 	}
 	
