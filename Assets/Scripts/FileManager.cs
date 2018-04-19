@@ -33,7 +33,9 @@ public class FileManager : MonoBehaviour {
 
 	private float thisTime;
 	public static StreamWriter writer;
+	public static StreamWriter writer1;
 	private static string path2;
+	private static string path3;
 
 	// Use this for initialization
 	void Start () {
@@ -84,27 +86,34 @@ public class FileManager : MonoBehaviour {
 
 		thisTime = Time.time;
 		path2 = Application.dataPath + "/train6D.txt";
+		path3 = Application.dataPath + "/train4D.txt";
 		writer = new StreamWriter (path2);
+		writer1 = new StreamWriter (path3);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (SimpleControl.canControl || ComplexControl.canControl) {
+		if (SimpleControl.canControl || ComplexControl.canControl) {	//write the train6D & train4D
 			if (Time.time-thisTime >= 1f) {
 				thisTime = Time.time;
 				writer.WriteLine (player.transform.position.x.ToString () + " " + player.transform.position.y.ToString () + " " + forward.distance.ToString () + " " + right.distance.ToString () + " " + left.distance.ToString () + " " + com.theta.ToString ());
+				writer1.WriteLine (forward.distance.ToString () + " " + right.distance.ToString () + " " + left.distance.ToString () + " " + com.theta.ToString ());
 			}
 		}
 	}
 
-	public static void FailedEnd(){
+	public static void FailedEnd(){	//write failed log
 		writer = new StreamWriter (path2);
 		writer.WriteLine ("Failed.");
 		writer.Close ();
+		writer1 = new StreamWriter (path3);
+		writer1.WriteLine ("Failed.");
+		writer1.Close ();
 	}
 
 	public static void EndProgram(){
 		writer.Close ();
+		writer1.Close ();
 	}
 
 	private void CutStringPlayer(string s){
