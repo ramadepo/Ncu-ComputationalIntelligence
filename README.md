@@ -1,12 +1,9 @@
-MiniMap Note
+Overview
 ===
-1. Assets Windows → create → Render Texture (***A***)
-2. Hierarchy Windows → create → Camera (***B***  for mini-map)
-3. set the Target Texture in Camera ***B***'s Component in Inspector with the Render Texture ***A***
-4. adjust the Camera ***B***
-5. Hierarchy Windows → create → UI → Raw Image (***C***)
-6. set the Texture in Raw Image ***C***'s Component in Inspector with the Render Texture ***A***
+It's the first homework in Computational Intelligence.
 
-The graph that Camera ***B*** take will be showed on the Raw Image ***C***
+ Use fuzzy rule to calculate appropriate steering wheel degree ***θ*** to make car(player) rotate, finally go to the goal without hit the wall.
 
-And in this project, I also add some FPS element and conbine my another project **Unity-Socket Test**, just use the **Client.exe** to create enemies.
+ The exe file is **/執行檔/104502518_劉冠聲_HW1_V01.exe**, please view the **ㄕㄛ104502518_劉冠聲_HW1_V01.pdf** before execute exe file.
+
+The case.txt format and physical rule is written in **rule.pdf**.
