@@ -8,5 +8,5 @@ It's the first homework in Computational Intelligence.
 
 The case.txt format and physical rule is written in **rule.pdf**.
 
-<img src="./C01.PNG" width="400" height="400" />
-<img src="./C02.PNG" width="400" height="400" />
+<img src="./C01.PNG" width="350" height="350" />
+<img src="./C02.PNG" width="350" height="350" />
