@@ -6,7 +6,7 @@ using TMPro;
 public class SwitchHw2 : MonoBehaviour {
 
 	private TextMeshProUGUI switchtext;
-	private bool haveStarted;
+	public static bool haveStarted;
 
 	// Use this for initialization
 	void Start () {
@@ -26,10 +26,8 @@ public class SwitchHw2 : MonoBehaviour {
 	}
 
 	private void ClickCompute(){
-		haveStarted = true;
-
-		switchtext.text = "Start";
-
+		Debug.Log ("Compute");
+		switchtext.text = "Computing";
 		//把輸入部分：迭代次數、族群大小、網路J值丟給PSO manager
 
 	}
@@ -37,7 +35,7 @@ public class SwitchHw2 : MonoBehaviour {
 	public void ControlSwitch(){
 		if (haveStarted) {
 			ClickStart ();
-		} else {
+		} else if (switchtext.text == "Compute") {
 			ClickCompute ();
 		}
 	}

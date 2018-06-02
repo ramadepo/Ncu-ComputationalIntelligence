@@ -3108,6 +3108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600719425}
   - component: {fileID: 1600719427}
+  - component: {fileID: 1600719426}
   m_Layer: 0
   m_Name: FuzzyManager
   m_TagString: Untagged
@@ -3128,6 +3129,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600719426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1600719424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6ff219ea130a64f941b09597f6e2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1600719427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3143,18 +3155,7 @@ MonoBehaviour:
   forward: {fileID: 751359009}
   left: {fileID: 592109716}
   right: {fileID: 1464698539}
-  forwardSmallValue: 1
-  forwardMediumValue: 0.5
-  forwardLargeValue: 0
-  forwardSmall: 9
-  forwardMedium: 13
-  forwardLarge: 17
-  RLSmallValue: 0.3
-  RLMediumValue: 0.5
-  RLLargeValue: 1
-  RLSmall: 1
-  RLMedium: 3
-  RLLarge: 5
+  psoManager: {fileID: 1600719426}
   theta: 0
 --- !u!1 &1640598595
 GameObject:
