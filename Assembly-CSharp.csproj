@@ -52,15 +52,21 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ComplexControl.cs" />
+     <Compile Include="Assets\Scripts\ComplexControlHW2.cs" />
      <Compile Include="Assets\Scripts\CoordinateLog.cs" />
      <Compile Include="Assets\Scripts\DegreeLog.cs" />
      <Compile Include="Assets\Scripts\DistanceLog.cs" />
      <Compile Include="Assets\Scripts\FileManager.cs" />
+     <Compile Include="Assets\Scripts\FileManagerHW2.cs" />
      <Compile Include="Assets\Scripts\GoalReach.cs" />
+     <Compile Include="Assets\Scripts\GoalReachHW2.cs" />
      <Compile Include="Assets\Scripts\LineSensor.cs" />
      <Compile Include="Assets\Scripts\SimpleControl.cs" />
+     <Compile Include="Assets\Scripts\SimpleControlHW2.cs" />
      <Compile Include="Assets\Scripts\Switch.cs" />
+     <Compile Include="Assets\Scripts\SwitchHw2.cs" />
      <Compile Include="Assets\Scripts\ThetaLog.cs" />
+     <Compile Include="Assets\Scripts\ThetaLogHW2.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -103,6 +109,7 @@
      <None Include="Assets\case001.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\case03.txt" />
+     <None Include="Assets\result.txt" />
      <None Include="Assets\case07.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

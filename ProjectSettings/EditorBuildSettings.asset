@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HW1.unity
     guid: 83329bf074514864a9a77a3c5cd2ad01
+  - enabled: 1
+    path: Assets/Scenes/HW2.unity
+    guid: 70688babb73cbc145ad6a631ea9ad3a3
