@@ -33,7 +33,6 @@ public class ComplexControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		canControl = false;
-		thistime = Time.time;
 		Time.timeScale = 10f;
 	}
 	

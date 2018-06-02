@@ -83,7 +83,6 @@ public class FileManagerHW2 : MonoBehaviour {
 		reader.Close ();
 		mapComplete = true;
 
-		thisTime = Time.time;
 		path2 = Application.dataPath + "/result.txt";
 	}
 

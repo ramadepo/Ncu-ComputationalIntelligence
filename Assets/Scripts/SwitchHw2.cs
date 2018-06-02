@@ -20,6 +20,7 @@ public class SwitchHw2 : MonoBehaviour {
 		//把PSO最後結果 丟給complex controller
 		Debug.Log("Start");
 		SimpleControlHW2.canControl = true;
+		ComplexControlHW2.canControl = true;
 
 
 	}
