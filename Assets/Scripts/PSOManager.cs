@@ -15,6 +15,7 @@ public class PSOManager : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start(){
+		//store train4D.txt content in variable InputData
 		path = Application.dataPath + "/train4dAll.txt";
 		reader = new StreamReader (path);
 		while (!reader.EndOfStream) {
@@ -25,15 +26,21 @@ public class PSOManager : MonoBehaviour {
 		reader.Close ();
 	}
 
-	public void PSOInit (int times,int size,int j) {
+	public bool PSOInit (int times,int size,int j) {
+		//get the input and initialize the pso held
 		AllNode.Add (new Node (j));
 		for (int i = 0; i < size; i++) {
 			AllNode.Add (new Node (j));
 		}
+			
 
+
+		//loop PSO calculate n times
 		for (int i = 0; i < times; i++) {
 			PSOCalculate ();
 		}
+
+		return true;
 	}
 
 	public float ReturnTheta(float forward,float left,float right){
@@ -41,8 +48,16 @@ public class PSOManager : MonoBehaviour {
 		return 0;
 	}
 
+	private void FitnessCalculate(){
+		//calculate the node's fitness
+	}
+
+	private void ErrorValueCalculate(){
+		//sum the node's error value
+	}
+
 	private void PSOCalculate(){
-		//pso calculate
+		//PSO calculate
 
 
 
@@ -50,6 +65,7 @@ public class PSOManager : MonoBehaviour {
 	}
 
 	private void PSOUpdateTheBest(){
+		//find the best node and store in variable Allnode[0]
 		for (int i = 1; i < AllNode.Count; i++) {
 			if (AllNode[i].ErrorValue < AllNode[0].ErrorValue) {
 				AllNode [0].node.Clear ();
@@ -89,6 +105,13 @@ public class PSOManager : MonoBehaviour {
 		c = float.Parse (temp);
 		temp = s.Substring (start, s.Length - start);
 		d = float.Parse (temp);
+	}
+
+	private float GS(float x, float x0,float roo){
+		//Gauss function for min(Left,Right)
+		float result;
+		result = Mathf.Exp (((-1f) * (Mathf.Pow (x - x0, 2))) / (2f * (Mathf.Pow (roo, 2))));
+		return result;
 	}
 
 }

@@ -39,10 +39,4 @@ public class ComplexControlHW2 : MonoBehaviour {
 			player.rotation = Quaternion.Euler (player.rotation.eulerAngles.x, player.rotation.eulerAngles.y, tempro - 90f);
 		}
 	}
-
-	private float SSGG(float x, float x0,float roo){	//Gauss function for min(Left,Right)
-		float result;
-		result = Mathf.Exp (((-1f) * (Mathf.Pow (x - x0, 2))) / (2f * (Mathf.Pow (roo, 2))));
-		return result;
-	}
 }

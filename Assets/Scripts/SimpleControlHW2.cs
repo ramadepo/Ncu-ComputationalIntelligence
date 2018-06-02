@@ -23,6 +23,7 @@ public class SimpleControlHW2 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//show the car path
 		if (canControl) {
 			cam.transform.position = transform.position + gasp;	//camera follow
 			if (ComplexControlHW2.canControl || SimpleControlHW2.canControl ) {
@@ -35,7 +36,8 @@ public class SimpleControlHW2 : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other){	//end condition
+	void OnTriggerEnter(Collider other){
+		//bad end condition
 		if (other.CompareTag("Wall")) {
 			FileManagerHW2.FailedEnd ();
 			Debug.Log ("Failed !");

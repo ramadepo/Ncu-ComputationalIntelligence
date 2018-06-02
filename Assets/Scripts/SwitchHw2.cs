@@ -7,6 +7,7 @@ public class SwitchHw2 : MonoBehaviour {
 
 	private TextMeshProUGUI switchtext;
 	public static bool haveStarted;
+	public PSOManager psoManager;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class SwitchHw2 : MonoBehaviour {
 	}
 
 	private void ClickStart(){
-		//把PSO最後結果 丟給complex controller
+		//car run
 		Debug.Log("Start");
 		SimpleControlHW2.canControl = true;
 		ComplexControlHW2.canControl = true;
@@ -29,14 +30,15 @@ public class SwitchHw2 : MonoBehaviour {
 		Debug.Log ("Compute");
 		switchtext.text = "Computing";
 		//把輸入部分：迭代次數、族群大小、網路J值丟給PSO manager
+		//if(psoManager.PSOInit(times,size,j){switchtext.text = "Start"; haveStarted = true;}
 
 	}
 
 	public void ControlSwitch(){
 		if (haveStarted) {
-			ClickStart ();
+			ClickStart ();		//click after pso computation
 		} else if (switchtext.text == "Compute") {
-			ClickCompute ();
+			ClickCompute ();		//first click
 		}
 	}
 }
