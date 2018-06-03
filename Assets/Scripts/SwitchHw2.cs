@@ -31,6 +31,10 @@ public class SwitchHw2 : MonoBehaviour {
 		switchtext.text = "Computing";
 		//把輸入部分：迭代次數、族群大小、網路J值丟給PSO manager
 		//if(psoManager.PSOInit(times,size,j){switchtext.text = "Start"; haveStarted = true;}
+		if (psoManager.PSOInit (1, 100, 100)) {
+			switchtext.text = "Start";
+			haveStarted = true;
+		}
 
 	}
 

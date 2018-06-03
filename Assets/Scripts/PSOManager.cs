@@ -12,6 +12,7 @@ public class PSOManager : MonoBehaviour {
 	private string s;
 	private string path;
 	private float a,b,c,d;
+	private int j;
 
 	// Use this for initialization
 	private void Start(){
@@ -28,13 +29,13 @@ public class PSOManager : MonoBehaviour {
 		//for (int i = 0; i < InputData.Count; i++) {
 		//	Debug.Log (i.ToString () + " : " + InputData [i].data [0].ToString () + " " + InputData [i].data [1].ToString () + " " + InputData [i].data [2].ToString () + " " + InputData [i].data [3].ToString ());
 		//}
-		//PSOInit (5, 3, 2);
 		/*******************debug******************/
 
 	}
 
-	public bool PSOInit (int times,int size,int j) {
+	public bool PSOInit (int times,int size,int J) {
 		//get the input and initialize the pso held
+		j=J;
 		AllNode.Add (new Node (j));
 		for (int i = 0; i < size; i++) {
 			AllNode.Add (new Node (j));
@@ -50,12 +51,16 @@ public class PSOManager : MonoBehaviour {
 		/*******************debug******************/
 
 		//init each error value and find the global best
+		for (int i = 1; i < AllNode.Count; i++) {
+			AllNode [i].ErrorValue = ErrorValueCalculate (i);
+		}
 
+		PSOUpdateTheBest ();
 
 
 		//loop PSO calculate n times
 		for (int i = 0; i < times; i++) {
-			PSOCalculate (j);
+			PSOCalculate ();
 			ProcessLog.iterationText = "Iteration : " + (i + 1).ToString ();
 		}
 
@@ -66,39 +71,50 @@ public class PSOManager : MonoBehaviour {
 		//use the best result to calculate the answer theta
 		//Fitness(forward,right,left)
 
-		//return FitnessCalculate(0,j,forward,right,left);
-		return 0;
+		return 40f * FitnessCalculate (0, forward, right, left);
 	}
 
-	private float FitnessCalculate(int n,int j,float x1,float x2,float x3){
+	private float FitnessCalculate(int n,float x1,float x2,float x3){
 		//calculate the node's fitness
 		//sigma(i=1~j) for wi*GSi(InputData[i].data[0~2])+constant
 		float temp;
 		temp = 0;
 		temp += AllNode [n].node [0];
+		Vector3 input;
+		Vector3 xx;
+		input = new Vector3 (x1, x2, x3);
 
+		for (int i = 0; i < j; i++) {
+			ProcessLog.jText = "J : " + (i + 1).ToString ();
+			xx = new Vector3 (AllNode [n].node [j + i * 3 + 1], AllNode [n].node [j + i * 3 + 2], AllNode [n].node [j + i * 3 + 3]);
+			temp += AllNode [n].node [i + 1] * GS (input, xx, AllNode [n].node [j + 3 * j + i + 1]);
+		}
+
+		return temp;
 	}
 
-	private float ErrorValueCalculate(int n,int j){
+	private float ErrorValueCalculate(int n){
 		//sum the node's error value
 		//(sigma(i=1~InputData.Count) for pow((InputData[i].data[3]-Fitness(InputData[i].data[0~2])),2))/2
 		float temp;
 		temp = 0;
 		for (int i = 0; i < InputData.Count; i++) {
-			temp += Mathf.Pow ((FF (InputData [i].data [3], 0f, 40f) - FitnessCalculate (n, j, FF (InputData [i].data [0], 20f, 20f), FF (InputData [i].data [1], 15f, 15f), FF (InputData [i].data [2], 15f, 15f))), 2f);
+			ProcessLog.nText = "N : " + i.ToString ();
+			temp += Mathf.Pow ((FF (InputData [i].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [i].data [0], 20f, 20f), FF (InputData [i].data [1], 15f, 15f), FF (InputData [i].data [2], 15f, 15f))), 2f);
 			temp = temp / 2;
 		}
 		return temp;
 	}
 
-	private void PSOCalculate(int j){
+	private void PSOCalculate(){
 		//PSO calculate
 
 
 
 		//each error value calculate
 		for (int i = 1; i < AllNode.Count; i++) {
-			AllNode [i].ErrorValue = ErrorValueCalculate (i, j);
+			ProcessLog.individualText = "Who : " + i.ToString ();
+			AllNode [i].ErrorValue = ErrorValueCalculate (i);
 		}
 
 		PSOUpdateTheBest ();
@@ -115,6 +131,7 @@ public class PSOManager : MonoBehaviour {
 				AllNode [0].ErrorValue = AllNode [i].ErrorValue;
 			}
 		}
+		ProcessLog.errorText = "Error : " + AllNode [0].ErrorValue.ToString ();
 		for (int i = 1; i < AllNode.Count; i++) {
 			if (AllNode[i].ErrorValue < AllNode[i].ErrorValueB) {
 				AllNode [i].nodeB.Clear ();
@@ -157,10 +174,10 @@ public class PSOManager : MonoBehaviour {
 		d = float.Parse (temp);
 	}
 
-	private float GS(float x, float x0,float roo){
+	private float GS(Vector3 x, Vector3 x0,float roo){
 		//Gauss function for min(Left,Right)
 		float result;
-		result = Mathf.Exp (((-1f) * (Mathf.Pow (x - x0, 2))) / (2f * (Mathf.Pow (roo, 2))));
+		result = Mathf.Exp ((-1f) * (Mathf.Pow (Vector3.Distance (x, x0), 2)) / (2f * (Mathf.Pow (roo, 2))));
 		return result;
 	}
 

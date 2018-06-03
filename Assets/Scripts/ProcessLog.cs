@@ -9,11 +9,13 @@ public class ProcessLog : MonoBehaviour {
 	public static string individualText;
 	public static string jText;
 	public static string nText;
+	public static string errorText;
 
 	public bool isLoop;
 	public bool isIndividual;
 	public bool isJ;
 	public bool isN;
+	public bool isError;
 
 	private TextMeshProUGUI theText;
 
@@ -24,6 +26,7 @@ public class ProcessLog : MonoBehaviour {
 		individualText = "Individual : 0";
 		jText = "J : 0";
 		nText = "N : 0";
+		errorText = "Error : 0";
 	}
 	
 	// Update is called once per frame
@@ -39,6 +42,9 @@ public class ProcessLog : MonoBehaviour {
 		}
 		else if (isN) {
 			theText.text = nText;
+		}
+		else if (isError) {
+			theText.text = errorText;
 		}
 	}
 }
