@@ -6,9 +6,10 @@
       <File FileName="Assets\Scripts\SimpleControlHW2.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ComplexControlHW2.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ThetaLogHW2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PSOManager.cs" Line="60" Column="32" />
+      <File FileName="Assets\Scripts\PSOManager.cs" Line="79" Column="3" />
       <File FileName="Assets\Scripts\GoalReachHW2.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\FileManagerHW2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ProcessLog.cs" Line="26" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

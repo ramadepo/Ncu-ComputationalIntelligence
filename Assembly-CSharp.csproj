@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\GoalReach.cs" />
      <Compile Include="Assets\Scripts\GoalReachHW2.cs" />
      <Compile Include="Assets\Scripts\LineSensor.cs" />
+     <Compile Include="Assets\Scripts\ProcessLog.cs" />
      <Compile Include="Assets\Scripts\PSOManager.cs" />
      <Compile Include="Assets\Scripts\SimpleControl.cs" />
      <Compile Include="Assets\Scripts\SimpleControlHW2.cs" />
