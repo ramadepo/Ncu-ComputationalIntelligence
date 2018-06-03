@@ -24,6 +24,11 @@ public class PSOManager : MonoBehaviour {
 			InputData.Add (new Data (a, b, c, d));
 		}
 		reader.Close ();
+		/*******************debug******************/
+		//for (int i = 0; i < InputData.Count; i++) {
+		//	Debug.Log (i.ToString () + " : " + InputData [i].data [0].ToString () + " " + InputData [i].data [1].ToString () + " " + InputData [i].data [2].ToString () + " " + InputData [i].data [3].ToString ());
+		//}
+		/*******************debug******************/
 	}
 
 	public bool PSOInit (int times,int size,int j) {
@@ -32,8 +37,15 @@ public class PSOManager : MonoBehaviour {
 		for (int i = 0; i < size; i++) {
 			AllNode.Add (new Node (j));
 		}
-			
-
+		
+		/*******************debug******************/
+		//for (int i = 0; i < AllNode.Count; i++) {
+		//	Debug.Log (i.ToString () + " : " + AllNode [i].node.Count);
+		//	Debug.Log (i.ToString () + "B : " + AllNode [i].nodeB.Count);
+		//	Debug.Log (i.ToString () + "'s error : " + AllNode [i].ErrorValue.ToString ());
+		//	Debug.Log (i.ToString () + "'s errorB : " + AllNode [i].ErrorValueB.ToString ());
+		//}
+		/*******************debug******************/
 
 		//loop PSO calculate n times
 		for (int i = 0; i < times; i++) {
@@ -45,15 +57,19 @@ public class PSOManager : MonoBehaviour {
 
 	public float ReturnTheta(float forward,float left,float right){
 		//use the best result to calculate the answer theta
+		//Fitness(forward,right,left)
+
 		return 0;
 	}
 
 	private void FitnessCalculate(){
 		//calculate the node's fitness
+		//sigma(i=1~j) for wi*GSi(InputData[i].data[0~2])+constant
 	}
 
 	private void ErrorValueCalculate(){
 		//sum the node's error value
+		//(sigma(i=1~InputData.Count) for pow((InputData[i].data[3]-Fitness(InputData[i].data[0~2])),2))/2
 	}
 
 	private void PSOCalculate(){
@@ -132,6 +148,7 @@ public class Node
 	public List<float> node = new List<float>();
 	public List<float> nodeB = new List<float> ();
 	public float ErrorValue;
+	public float ErrorValueB;
 	public Node(int j){
 		node.Add (Random.Range (-1f, 1f));
 		for (int i = 0; i < j; i++) {
@@ -148,5 +165,6 @@ public class Node
 			nodeB.Add (node [i]);
 		}
 		ErrorValue = 999999f;
+		ErrorValueB = 999999f;
 	}
 }
