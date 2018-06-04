@@ -95,14 +95,14 @@ public class PSOManager : MonoBehaviour {
 	public float ReturnTheta(float forward,float left,float right){
 		//use the best result to calculate the answer theta
 		//Fitness(forward,right,left)
-		if (40f * FitnessCalculate (0, forward, right, left) > 40f) {
+		if (5f*FitnessCalculate (0, forward, right, left) > 40f) {
 			return 40f;
 		}
-		else if (40f * FitnessCalculate (0, forward, right, left) < -40f) {
+		else if (5f*FitnessCalculate (0, forward, right, left) < -40f) {
 			return -40f;
 		}
 		//return 40f;
-		return 40f * FitnessCalculate (0, forward, right, left);
+		return 5f*FitnessCalculate (0, forward, right, left);
 	}
 
 	private float FitnessCalculate(int n,float x1,float x2,float x3){
@@ -130,8 +130,8 @@ public class PSOManager : MonoBehaviour {
 		temp = 0;
 		for (temp3 = 0; temp3 < InputData.Count; temp3++) {
 			temp += Mathf.Abs (FF (InputData [temp3].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [temp3].data [0], 20f, 20f), FF (InputData [temp3].data [1], 20f, 20f), FF (InputData [temp3].data [2], 20f, 20f)));
-			temp = temp / InputData.Count;
 		}
+		temp = temp / InputData.Count;
 		return temp;
 	}
 
@@ -208,7 +208,28 @@ public class PSOManager : MonoBehaviour {
 				for (int w = 0; w < j; w++) {
 					AllNode [x].node.Add ((float)(rnd.NextDouble()));
 				}
+				//after the transport re-calculate the error
+				AllNode [x].ErrorValue = ErrorValueCalculate (x);
+			}
+		}
 
+		//after transport re-udate the best
+		for (int i = 1; i < AllNode.Count; i++) {
+			if (AllNode[i].ErrorValue < AllNode[0].ErrorValue) {
+				AllNode [0].node.Clear ();
+				for (int k = 0; k < AllNode[i].node.Count; k++) {
+					AllNode [0].node.Add (AllNode [i].node [k]);
+				}
+				AllNode [0].ErrorValue = AllNode [i].ErrorValue;
+			}
+		}
+		for (int i = 1; i < AllNode.Count; i++) {
+			if (AllNode [i].ErrorValue < AllNode [i].ErrorValueB) {
+				AllNode [i].nodeB.Clear ();
+				for (int k = 0; k < AllNode [i].node.Count; k++) {
+					AllNode [i].nodeB.Add (AllNode [i].node [k]);
+				}
+				AllNode [i].ErrorValueB = AllNode [i].ErrorValue;
 			}
 		}
 	}
@@ -301,7 +322,7 @@ public class Node
 			node.Add ((float)(rnd.NextDouble()*signal));
 		}
 		for (int i = 0; i < j; i++) {
-			node.Add ((float)(rnd.NextDouble()));
+			node.Add ((float)(rnd.NextDouble()*10));
 		}
 
 		for (int i = 0; i < node.Count; i++) {
