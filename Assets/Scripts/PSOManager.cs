@@ -19,6 +19,8 @@ public class PSOManager : MonoBehaviour {
 	private int j;
 	private int temp1, temp2, temp3, temp4;
 	private bool hasError;
+	private System.Random rnd;
+	private int signal;
 
 	// Use this for initialization
 	private void Start(){
@@ -41,6 +43,7 @@ public class PSOManager : MonoBehaviour {
 		temp4 = 1;
 		hasError = false;
 		canStart = false;
+		rnd = new System.Random ();
 	}
 
 	private void Update(){
@@ -125,7 +128,7 @@ public class PSOManager : MonoBehaviour {
 		float temp;
 		temp = 0;
 		for (temp3 = 0; temp3 < InputData.Count; temp3++) {
-			temp += Mathf.Pow ((FF (InputData [temp3].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [temp3].data [0], 20f, 20f), FF (InputData [temp3].data [1], 15f, 15f), FF (InputData [temp3].data [2], 15f, 15f))), 2f);
+			temp += Mathf.Pow ((FF (InputData [temp3].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [temp3].data [0], 20f, 20f), FF (InputData [temp3].data [1], 20f, 20f), FF (InputData [temp3].data [2], 20f, 20f))), 2f);
 			temp = temp / 2;
 		}
 		return temp;
@@ -136,7 +139,12 @@ public class PSOManager : MonoBehaviour {
 
 		for (temp4 = 1; temp4 < AllNode.Count; temp4++) {
 			for (int i = 0; i < AllNode[temp4].node.Count; i++) {
-				AllNode [temp4].velocity [i] = ((0.2f) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((0.8f) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i];
+				if (rnd.NextDouble()>0.5) {
+					signal = 1;
+				} else {
+					signal = -1;
+				}
+				AllNode [temp4].velocity [i] = ((0.6f) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((0.2f) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i] + (float)((0.2f) * rnd.NextDouble () * signal);
 				AllNode [temp4].node [i] = AllNode [temp4].node [i] + AllNode [temp4].velocity [i];
 			}
 		}
@@ -167,6 +175,39 @@ public class PSOManager : MonoBehaviour {
 					AllNode [i].nodeB.Add (AllNode [i].node [k]);
 				}
 				AllNode [i].ErrorValueB = AllNode [i].ErrorValue;
+			}
+
+			//held random transport to somewhere with 1/1000 probability	
+
+			if (rnd.NextDouble()<=0.05) {
+				int x = rnd.Next (1, AllNode.Count);
+				AllNode [x].node.Clear ();
+				if (rnd.NextDouble()>0.5) {
+					signal = 1;
+				} else {
+					signal = -1;
+				}
+				AllNode [x].node.Add ((float)(rnd.NextDouble()*signal));
+				for (int w = 0; w < j; w++) {
+					if (rnd.NextDouble()>0.5) {
+						signal = 1;
+					} else {
+						signal = -1;
+					}
+					AllNode [x].node.Add ((float)(rnd.NextDouble()*signal));
+				}
+				for (int w = 0; w < 3*j; w++) {
+					if (rnd.NextDouble()>0.5) {
+						signal = 1;
+					} else {
+						signal = -1;
+					}
+					AllNode [x].node.Add ((float)(rnd.NextDouble()*signal));
+				}
+				for (int w = 0; w < j; w++) {
+					AllNode [x].node.Add ((float)(rnd.NextDouble()));
+				}
+
 			}
 		}
 	}
