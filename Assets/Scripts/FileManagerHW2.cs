@@ -36,6 +36,8 @@ public class FileManagerHW2 : MonoBehaviour {
 	private static string path2;
 	private static string path3;
 
+	public PSOManager psoManager;
+
 	// Use this for initialization
 	void Start () {
 		string filename;
@@ -93,10 +95,13 @@ public class FileManagerHW2 : MonoBehaviour {
 		writer.Close ();
 	}
 
-	public static void EndProgram(){
+	public void EndProgram(){
 		writer = new StreamWriter (path2);
 		writer.WriteLine ("Successful.");
 		//將最佳解output
+		for (int i = 0; i < psoManager.AllNode[0].node.Count; i++) {
+			writer.WriteLine ("[" + i.ToString () + "]" + " : " + psoManager.AllNode [0].node [i].ToString ());
+		}
 		writer.Close ();
 	}
 

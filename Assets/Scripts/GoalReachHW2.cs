@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GoalReachHW2 : MonoBehaviour {
 
+	public FileManagerHW2 fileManager;
+
 	void OnTriggerEnter(Collider other){
 		//happy end condition
 		if (other.CompareTag("EndPoint")) {
-			FileManagerHW2.EndProgram ();
 			Debug.Log ("Success !");
+			fileManager.EndProgram ();
 			SceneManager.LoadScene ("HW2");
 		}
 	}
