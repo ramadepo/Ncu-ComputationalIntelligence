@@ -95,14 +95,14 @@ public class PSOManager : MonoBehaviour {
 	public float ReturnTheta(float forward,float left,float right){
 		//use the best result to calculate the answer theta
 		//Fitness(forward,right,left)
-		if (5f*FitnessCalculate (0, forward, right, left) > 40f) {
+		if (FitnessCalculate (0, forward, right, left) > 40f) {
 			return 40f;
 		}
-		else if (5f*FitnessCalculate (0, forward, right, left) < -40f) {
+		else if (FitnessCalculate (0, forward, right, left) < -40f) {
 			return -40f;
 		}
 		//return 40f;
-		return 5f*FitnessCalculate (0, forward, right, left);
+		return FitnessCalculate (0, forward, right, left);
 	}
 
 	private float FitnessCalculate(int n,float x1,float x2,float x3){
