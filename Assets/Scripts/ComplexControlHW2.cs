@@ -28,6 +28,7 @@ public class ComplexControlHW2 : MonoBehaviour {
 	void Update () {
 		if (canControl) {
 			theta = psoManager.ReturnTheta (forward.distance, left.distance, right.distance);
+			Debug.Log (theta);
 			//x(t+1) = x(t) + cos[Φ(t)+θ(t)] + sin[θ(t)]sin[Φ(t)]
 			tempx = player.position.x + (Mathf.Cos ((player.rotation.eulerAngles.z + 90f - theta)*Mathf.Deg2Rad) + (Mathf.Sin (theta*Mathf.Deg2Rad) * Mathf.Sin ((player.rotation.eulerAngles.z + 90f)*Mathf.Deg2Rad)))*Time.deltaTime;
 			//y(t+1) = y(t) + sin[Φ(t)+θ(t)] - sin[θ(t)]cos[Φ(t)]

@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class PSOManager : MonoBehaviour {
 
 	public List<Data> InputData = new List<Data>();
 	public List<Node> AllNode = new List<Node>();
 
+	public static bool canStart;
+	public int times, size, J;
+
 	private StreamReader reader;
 	private string s;
 	private string path;
 	private float a,b,c,d;
 	private int j;
+	private int temp1, temp2, temp3, temp4;
+	private bool hasError;
 
 	// Use this for initialization
 	private void Start(){
@@ -31,12 +37,28 @@ public class PSOManager : MonoBehaviour {
 		//}
 		/*******************debug******************/
 
+		temp1 = temp2 = temp3 = 0;
+		temp4 = 1;
+		hasError = false;
+		canStart = false;
 	}
 
-	public bool PSOInit (int times,int size,int J) {
+	private void Update(){
+		ProcessLog.iterationText = "Iteration : " + temp1.ToString ();
+		ProcessLog.jText = "J : " + temp2.ToString ();
+		ProcessLog.nText = "N : " + temp3.ToString ();
+		ProcessLog.individualText = "Who : " + (temp4 - 1).ToString ();
+		if (hasError) {
+			ProcessLog.errorText = "Error : " + AllNode [0].ErrorValue.ToString ();
+		}
+
+	}
+
+	public void PSOInit () {
 		//get the input and initialize the pso held
 		j=J;
 		AllNode.Add (new Node (j));
+		hasError = true;
 		for (int i = 0; i < size; i++) {
 			AllNode.Add (new Node (j));
 		}
@@ -59,18 +81,23 @@ public class PSOManager : MonoBehaviour {
 
 
 		//loop PSO calculate n times
-		for (int i = 0; i < times; i++) {
+		for (temp1 = 0; temp1 < times; temp1++) {
 			PSOCalculate ();
-			ProcessLog.iterationText = "Iteration : " + (i + 1).ToString ();
 		}
 
-		return true;
+		canStart = true;
 	}
 
 	public float ReturnTheta(float forward,float left,float right){
 		//use the best result to calculate the answer theta
 		//Fitness(forward,right,left)
-
+		if (40f * FitnessCalculate (0, forward, right, left) > 40f) {
+			return 40f;
+		}
+		else if (40f * FitnessCalculate (0, forward, right, left) < -40f) {
+			return -40f;
+		}
+		//return 40f;
 		return 40f * FitnessCalculate (0, forward, right, left);
 	}
 
@@ -84,10 +111,9 @@ public class PSOManager : MonoBehaviour {
 		Vector3 xx;
 		input = new Vector3 (x1, x2, x3);
 
-		for (int i = 0; i < j; i++) {
-			ProcessLog.jText = "J : " + (i + 1).ToString ();
-			xx = new Vector3 (AllNode [n].node [j + i * 3 + 1], AllNode [n].node [j + i * 3 + 2], AllNode [n].node [j + i * 3 + 3]);
-			temp += AllNode [n].node [i + 1] * GS (input, xx, AllNode [n].node [j + 3 * j + i + 1]);
+		for (temp2 = 0; temp2 < j; temp2++) {
+			xx = new Vector3 (AllNode [n].node [j + temp2 * 3 + 1], AllNode [n].node [j + temp2 * 3 + 2], AllNode [n].node [j + temp2 * 3 + 3]);
+			temp += AllNode [n].node [temp2 + 1] * GS (input, xx, AllNode [n].node [j + 3 * j + temp2 + 1]);
 		}
 
 		return temp;
@@ -98,9 +124,8 @@ public class PSOManager : MonoBehaviour {
 		//(sigma(i=1~InputData.Count) for pow((InputData[i].data[3]-Fitness(InputData[i].data[0~2])),2))/2
 		float temp;
 		temp = 0;
-		for (int i = 0; i < InputData.Count; i++) {
-			ProcessLog.nText = "N : " + i.ToString ();
-			temp += Mathf.Pow ((FF (InputData [i].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [i].data [0], 20f, 20f), FF (InputData [i].data [1], 15f, 15f), FF (InputData [i].data [2], 15f, 15f))), 2f);
+		for (temp3 = 0; temp3 < InputData.Count; temp3++) {
+			temp += Mathf.Pow ((FF (InputData [temp3].data [3], 0f, 40f) - FitnessCalculate (n, FF (InputData [temp3].data [0], 20f, 20f), FF (InputData [temp3].data [1], 15f, 15f), FF (InputData [temp3].data [2], 15f, 15f))), 2f);
 			temp = temp / 2;
 		}
 		return temp;
@@ -109,12 +134,16 @@ public class PSOManager : MonoBehaviour {
 	private void PSOCalculate(){
 		//PSO calculate
 
-
+		for (temp4 = 1; temp4 < AllNode.Count; temp4++) {
+			for (int i = 0; i < AllNode[temp4].node.Count; i++) {
+				AllNode [temp4].velocity [i] = ((0.5f) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((0.5f) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i];
+				AllNode [temp4].node [i] = AllNode [temp4].node [i] + AllNode [temp4].velocity [i];
+			}
+		}
 
 		//each error value calculate
-		for (int i = 1; i < AllNode.Count; i++) {
-			ProcessLog.individualText = "Who : " + i.ToString ();
-			AllNode [i].ErrorValue = ErrorValueCalculate (i);
+		for (temp4 = 1; temp4 < AllNode.Count; temp4++) {
+			AllNode [temp4].ErrorValue = ErrorValueCalculate (temp4);
 		}
 
 		PSOUpdateTheBest ();
@@ -131,7 +160,6 @@ public class PSOManager : MonoBehaviour {
 				AllNode [0].ErrorValue = AllNode [i].ErrorValue;
 			}
 		}
-		ProcessLog.errorText = "Error : " + AllNode [0].ErrorValue.ToString ();
 		for (int i = 1; i < AllNode.Count; i++) {
 			if (AllNode[i].ErrorValue < AllNode[i].ErrorValueB) {
 				AllNode [i].nodeB.Clear ();
@@ -201,22 +229,42 @@ public class Node
 {
 	public List<float> node = new List<float>();
 	public List<float> nodeB = new List<float> ();
+	public List<float> velocity = new List<float> ();
 	public float ErrorValue;
 	public float ErrorValueB;
+	public System.Random rnd;
+	public int signal;
 	public Node(int j){
-		node.Add (Random.Range (-1f, 1f));
+		rnd = new System.Random ();
+		if (rnd.NextDouble()>0.5) {
+			signal = 1;
+		} else {
+			signal = -1;
+		}
+		node.Add ((float)(rnd.NextDouble()*signal));
 		for (int i = 0; i < j; i++) {
-			node.Add (Random.Range (-1f, 1f));
+			if (rnd.NextDouble()>0.5) {
+				signal = 1;
+			} else {
+				signal = -1;
+			}
+			node.Add ((float)(rnd.NextDouble()*signal));
 		}
 		for (int i = 0; i < 3*j; i++) {
-			node.Add (Random.Range (-1f, 1f));
+			if (rnd.NextDouble()>0.5) {
+				signal = 1;
+			} else {
+				signal = -1;
+			}
+			node.Add ((float)(rnd.NextDouble()*signal));
 		}
 		for (int i = 0; i < j; i++) {
-			node.Add (Random.Range (0f, 1f));
+			node.Add ((float)(rnd.NextDouble()));
 		}
 
 		for (int i = 0; i < node.Count; i++) {
 			nodeB.Add (node [i]);
+			velocity.Add (0f);
 		}
 		ErrorValue = 999999f;
 		ErrorValueB = 999999f;
