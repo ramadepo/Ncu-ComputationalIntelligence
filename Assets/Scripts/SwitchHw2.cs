@@ -45,6 +45,9 @@ public class SwitchHw2 : MonoBehaviour {
 		psoManager.times = int.Parse(GameObject.Find("LoopInput").GetComponent<TMP_InputField>().text);
 		psoManager.size = int.Parse(GameObject.Find("SizeInput").GetComponent<TMP_InputField>().text);
 		psoManager.J = int.Parse(GameObject.Find("JInput").GetComponent<TMP_InputField>().text);
+		psoManager.localWeight = float.Parse (GameObject.Find ("LocalWeightInput").GetComponent<TMP_InputField> ().text);
+		psoManager.globalWeight = float.Parse (GameObject.Find ("GlobalWeightInput").GetComponent<TMP_InputField> ().text);
+		psoManager.randomWeight = float.Parse (GameObject.Find ("RandomWeightInput").GetComponent<TMP_InputField> ().text);
 
 		thread.Start ();
 	}
