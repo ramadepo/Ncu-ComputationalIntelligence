@@ -136,7 +136,7 @@ public class PSOManager : MonoBehaviour {
 
 		for (temp4 = 1; temp4 < AllNode.Count; temp4++) {
 			for (int i = 0; i < AllNode[temp4].node.Count; i++) {
-				AllNode [temp4].velocity [i] = ((0.5f) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((0.5f) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i];
+				AllNode [temp4].velocity [i] = ((0.2f) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((0.8f) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i];
 				AllNode [temp4].node [i] = AllNode [temp4].node [i] + AllNode [temp4].velocity [i];
 			}
 		}
