@@ -34,7 +34,6 @@ public class FileManagerHW2 : MonoBehaviour {
 	private float thisTime;
 	public static StreamWriter writer;
 	private static string path2;
-	private static string path3;
 
 	public PSOManager psoManager;
 
