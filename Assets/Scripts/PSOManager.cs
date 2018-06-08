@@ -11,7 +11,7 @@ public class PSOManager : MonoBehaviour {
 
 	public static bool canStart;
 	public int times, size, J;
-	public float localWeight, globalWeight, randomWeight;
+	public float localWeight, globalWeight, randomWeight, vWeight;
 
 	private StreamReader reader;
 	private string s;
@@ -97,7 +97,7 @@ public class PSOManager : MonoBehaviour {
 		//Fitness(forward,right,left)
 		float theReturn;
 		theReturn = FitnessCalculate (0, forward, right, left);
-		theReturn = theReturn * 6f;
+		theReturn = theReturn * 4f;
 		Debug.Log (theReturn);
 		if (theReturn > 40f) {
 			return 40f;
@@ -149,7 +149,8 @@ public class PSOManager : MonoBehaviour {
 				} else {
 					signal = -1;
 				}
-				AllNode [temp4].velocity [i] = ((localWeight) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((globalWeight) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + AllNode [temp4].velocity [i] + (float)((randomWeight) * rnd.NextDouble () * signal);
+				//v(n) = w0*v(n-1) + w1*pbest + w2*gbest + w3*randomvalue
+				AllNode [temp4].velocity [i] = ((vWeight) * (AllNode [temp4].velocity [i])) + ((localWeight) * (AllNode [temp4].nodeB [i] - AllNode [temp4].node [i])) + ((globalWeight) * (AllNode [0].node [i] - AllNode [temp4].node [i])) + (float)((randomWeight) * rnd.NextDouble () * signal);
 				AllNode [temp4].node [i] = AllNode [temp4].node [i] + AllNode [temp4].velocity [i];
 			}
 		}
