@@ -1,11 +1,13 @@
 Overview
 ===
-It's the homework in Computational Intelligence.
+It's the homework in Computational Intelligence, implemented by **Unity Engine** and **C#**.
 
- Use fuzzy rule and swarm intelligence to calculate appropriate steering wheel degree ***θ*** to make car(player) rotate, finally go to the goal without hit the wall.
+ Use fuzzy rule and swarm intelligence to calculate appropriate steering wheel degree *θ* to make car(player) rotate, finally go to the goal without hit the wall.
 
- The exe file is **/執行檔/104502518_劉冠聲_HW1_V01.exe**, please view the **104502518_劉冠聲_HW1_V01.pdf** before execute exe file.
+There's two scenes in this Unity project:
+- **HW1** : Using fuzzy rule
+- **HW2** : Using swarm intelligence
 
-The case.txt format and physical rule is written in **rule.pdf**.
+The case.txt format and physical rule is written in rule.pdf.
 
 <img src="./C01.PNG" width="400" height="400" />  <img src="./C02.PNG" width="400" height="400" />
