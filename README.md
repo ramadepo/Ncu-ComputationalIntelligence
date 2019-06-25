@@ -8,6 +8,6 @@ There's two scenes in this Unity project:
 - **HW1** : Using fuzzy rule
 - **HW2** : Using swarm intelligence
 
-The case.txt format and physical rule is written in rule.pdf.
+The case.txt format and physical rule is written in [rule.pdf](https://github.com/ramadepo/Ncu-ComputationalIntelligence/blob/master/rule.pdf).
 
 <img src="./C01.PNG" width="400" height="400" />  <img src="./C02.PNG" width="400" height="400" />
